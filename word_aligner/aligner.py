@@ -1,5 +1,6 @@
 # coding: utf8
 
+from .config import *
 from .parseUtil import *
 from .util import *
 from .wordSim import *

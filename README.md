@@ -27,3 +27,10 @@ java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer
 python test_align.py
 ```
 
+## Evaluate on STSBenchmark
+```bash
+sh download.sh
+python run_stsbenchmark.py
+# about 0.6379
+```
+
