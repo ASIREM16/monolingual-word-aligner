@@ -107,13 +107,13 @@ def idf_aligner(parsed_data):
             weight = idf_weight.get(word, min_idf_weight)
             sa_sum += weight
             aligned_sa_sum += aligned_sa[idx] * weight
-
         for idx, word in enumerate(lemma_sb):
             weight = idf_weight.get(word, min_idf_weight)
             sb_sum += weight
             aligned_sb_sum += aligned_sb[idx] * weight
+        # calc the similarity score
         feature = [1.0 * (aligned_sa_sum + aligned_sb_sum) / (sa_sum + sb_sum + 1e-6)]
-
+        # add predict score and gold label
         preds.append(feature[0])
         golds.append(score)
     return preds, golds
@@ -133,22 +133,29 @@ def evaluation(predict, gold):
 
 
 def idf_calculator(sentence_list, min_cnt=1):
+    """
+    idf_calculator
+    Args:
+        sentence_list: [[w1, w2,...], ...]
+        min_cnt: int
+    Returns:
+        idf_dict: {w:idf}
+    """
     doc_num = 0
     word_list = []
     for sequence in sentence_list:
         word_list += sequence
         doc_num += 1
-
     word_count = Counter()
     for word in word_list:
         word_count[word] += 1
-
+    # filter the word which counts less than min_cnt
     idf_dict = {}
     good_keys = [v for v in word_count.keys() if word_count[v] >= min_cnt]
-
+    # frequence dict
     for key in good_keys:
         idf_dict[key] = word_count[key]
-
+    # idf dict
     for key in idf_dict.keys():
         idf_dict[key] = math.log(float(doc_num) / float(idf_dict[key])) / math.log(10)
 
