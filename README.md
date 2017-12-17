@@ -24,6 +24,6 @@ cd stanford-corenlp-full-2015-12-09/
 java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer
 # after this, you will find stanfordCoreNLP server at http://localhost:9000/
 
-# python test_align.py
+python test_align.py
 ```
 
