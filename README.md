@@ -4,7 +4,7 @@ This is a word aligner for English: given two English sentences, it aligns relat
 
 
 ## Ack
-Initially, this is a fork of <i>[ma-sultan/monolingual-word-aligner](https://github.com/ma-sultan/monolingual-word-aligner)</i>, the aligner presented in [Sultan et al., 2015](http://aclweb.org/anthology/S/S15/S15-2027.pdf) that has been very successful in [SemEval STS (Semantic Textual Similarity) Task](alt.qcri.org/semeval2017/task1/) in recent years.
+Initially, this is a fork of <i>[ma-sultan/monolingual-word-aligner](https://github.com/ma-sultan/monolingual-word-aligner)</i>, the aligner presented in [Sultan et al., 2015](http://aclweb.org/anthology/S/S15/S15-2027.pdf) that has been very successful in [SemEval STS (Semantic Textual Similarity) Task](http://alt.qcri.org/semeval2017/task1/) in recent years.
 
 
 ## Install
