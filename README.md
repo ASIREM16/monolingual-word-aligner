@@ -2,25 +2,28 @@
 
 This is a word aligner for English: given two English sentences, it aligns related words in the two sentences. It exploits the semantic and contextual similarities of the words to make alignment decisions.
 
-## Requirements
 
-1) Python **NLTK**  
-2) The [Python wrapper for Stanford CoreNLP](https://github.com/dasmith/stanford-corenlp-python)  
+## Ack
+Initially, this is a fork of <i>[ma-sultan/monolingual-word-aligner](https://github.com/ma-sultan/monolingual-word-aligner)</i>, the aligner presented in [Sultan et al., 2015](https://github.com/FerreroJeremy/monolingual-word-aligner/blob/master/docs/DLS%40CU-%20Sentence%20Similarity%20from%20Word%20Alignment%20and%20Semantic%20Vector%20Composition.pdf) that has been very successful in [SemEval STS (Semantic Textual Similarity) Task](https://github.com/FerreroJeremy/monolingual-word-aligner/blob/master/docs/SemEval-2016%20Task%201-%20Semantic%20Textual%20Similarity%2C%20Monolingual%20and%20Cross-Lingual%20Evaluation.pdf) in recent years.
 
-## Installation and Usage
 
-1) Install the above tools.  
-2) Change line 100 of corenlp.py, from "rel, left, right = map(lambda x: remove_id(x), split_entry)" to "rel, left, right = split_entry".  
-3) Download the NLTK stopword corpus:  
+## Install
+```bash
+# download the repo
+git clone https://github.com/rgtjf/monolingual-word-aligner.git
 
-	python -m nltk.downloader stopwords
-4) Install jsonrpclib:  
+# require stopwords from nltk
+python -m nltk.downloader stopwords
 
-	sudo pip install jsonrpclib
-5) Download the aligner:  
+# require stanford corenlp
+wget http://nlp.stanford.edu/software/stanford-corenlp-full-2015-12-09.zip
+unzip stanford-corenlp-full-2015-12-09.zip
 
-	  git clone https://github.com/ma-sultan/monolingual-word-aligner.git  
-6) Run the corenlp.py script to launch the server:  
+# lanch the stanford CoreNLP
+cd stanford-corenlp-full-2015-12-09/
+java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer
+# after this, you will find stanfordCoreNLP server at http://localhost:9000/
 
-	  python corenlp.py  
-7) To view the aligner in action, run **testAlign.py**. (Word indexing starts at 1.)
+# python test_align.py
+```
+

@@ -1,26 +1,26 @@
-from config import *
+# coding: utf8
+import os
+from .config import *
 
-################################################################################
 def loadPPDB(ppdbFileName = 'Resources/ppdb-1.0-xxxl-lexical.extended.synonyms.uniquepairs'):
-
     global ppdbSim
     global ppdbDict
 
     count = 0
-    
-    ppdbFile = open(ppdbFileName, 'r')
+
+    cur_dir = os.path.dirname(__file__)
+    ppdbFileName = os.path.join(cur_dir, ppdbFileName)
+
+    ppdbFile = open(ppdbFileName, 'r', encoding='utf8')
     for line in ppdbFile:
-        if line == '\n':
-            continue
         tokens = line.split()
+        if len(tokens) < 2:
+            continue
         tokens[1] = tokens[1].strip()
         ppdbDict[(tokens[0], tokens[1])] = ppdbSim
         count += 1
 
-################################################################################
 
-
-################################################################################
 def presentInPPDB(word1, word2):
 
     global ppdbDict
@@ -29,16 +29,14 @@ def presentInPPDB(word1, word2):
         return True
     if (word2.lower(), word1.lower()) in ppdbDict:
         return True
-    
-################################################################################
 
 
-##############################################################################################################################
 def wordRelatedness(word1, pos1, word2, pos2):
 
     global stemmer
     global ppdbSim
     global punctuations
+    global stopwords
 
     if len(word1) > 1:
         canonicalWord1 = word1.replace('.', '')
@@ -46,25 +44,25 @@ def wordRelatedness(word1, pos1, word2, pos2):
         canonicalWord1 = canonicalWord1.replace(',', '')
     else:
         canonicalWord1 = word1
-        
+
     if len(word2) > 1:
         canonicalWord2 = word2.replace('.', '')
         canonicalWord2 = canonicalWord2.replace('-', '')
         canonicalWord2 = canonicalWord2.replace(',', '')
     else:
         canonicalWord2 = word2
-    
-    
+
+
     if canonicalWord1.lower() == canonicalWord2.lower():
         return 1
 
     if stemmer.stem(word1).lower() == stemmer.stem(word2).lower():
         return 1
 
-    if canonicalWord1.isdigit() and canonicalWord2.isdigit() and canonicalWord1 <> canonicalWord2:
+    if canonicalWord1.isdigit() and canonicalWord2.isdigit() and canonicalWord1 != canonicalWord2:
         return 0
 
-    if pos1.lower() == 'cd' and pos2.lower() == 'cd' and (not canonicalWord1.isdigit() and not canonicalWord2.isdigit()) and canonicalWord1 <> canonicalWord2:
+    if pos1.lower() == 'cd' and pos2.lower() == 'cd' and (not canonicalWord1.isdigit() and not canonicalWord2.isdigit()) and canonicalWord1 != canonicalWord2:
         return 0
 
     # stopwords can be similar to only stopwords
