@@ -28,9 +28,19 @@ python test_align.py
 ```
 
 ## Evaluate on STSBenchmark
+
 ```bash
 sh download.sh
 python run_stsbenchmark.py
-# about 0.6379
 ```
 
+### Results
+
+| Methods (eval on STSbenchmark) | Dev    | Test   |
+|--------------------------------|--------|--------|
+| aligner                        | 0.6991 | 0.6379 |
+| idf_aligner                    | 0.7969 | 0.7622 |
+
+
+### Reference
+[STSBenchmark board](http://ixa2.si.ehu.es/stswiki/index.php/STSbenchmark)
