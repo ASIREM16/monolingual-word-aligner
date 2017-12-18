@@ -1,6 +1,7 @@
 # coding: utf8
-from word_aligner.corenlp_utils import StanfordNLP
-from word_aligner.aligner import align_feats
+from .corenlp_utils import StanfordNLP
+
+from aligner import align_feats
 
 sa = "Two green and white trains sitting on the tracks."
 sb = "Two green and white trains on tracks."
