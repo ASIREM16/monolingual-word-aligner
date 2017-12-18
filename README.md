@@ -12,7 +12,7 @@ Initially, this is a fork of <i>[ma-sultan/monolingual-word-aligner](https://git
 ```bash
 git remote add wordaligner https://github.com/rgtjf/monolingual-word-aligner.git
 
-git subtree add --prefix=PATH --squash wordaligner lib-dev
+git subtree add --prefix=PATH --squash wordaligner dev-lib
 ```
 
 ## Usage
