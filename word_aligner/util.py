@@ -1,6 +1,7 @@
 # coding: utf8
 from .config import *
 
+
 def isSublist(A, B):
     """returns True if A is a sublist of B, False otherwise
     """

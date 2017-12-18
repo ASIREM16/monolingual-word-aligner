@@ -282,4 +282,4 @@ if __name__ == '__main__':
     dep = dependencyParseAndPutOffsets(parsetext)
     print(findParents(dep, 1 + 1, 'love'))
     print(findChildren(dep, 1 + 1, 'love'))
-    print(len(parsetext['sentences']))
+    print(len(parsetext['sentences'][0]['tokens']))

@@ -2,6 +2,7 @@
 import os
 from .config import *
 
+
 def loadPPDB(ppdbFileName = 'Resources/ppdb-1.0-xxxl-lexical.extended.synonyms.uniquepairs'):
     global ppdbSim
     global ppdbDict
@@ -52,7 +53,6 @@ def wordRelatedness(word1, pos1, word2, pos2):
     else:
         canonicalWord2 = word2
 
-
     if canonicalWord1.lower() == canonicalWord2.lower():
         return 1
 
@@ -77,7 +77,6 @@ def wordRelatedness(word1, pos1, word2, pos2):
         return ppdbSim
     else:
         return 0
-##############################################################################################################################
 
 loadPPDB()
 

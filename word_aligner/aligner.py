@@ -42,16 +42,18 @@ def alignNouns(source, target, sourceParseResult, targetParseResult, existingAli
 
     # construct the two matrices in the following loop
     for i in sourceWordIndices:
-        if i in sourceWordIndicesAlreadyAligned or (sourcePosTags[i-1][0].lower() != 'n' and sourcePosTags[i-1].lower()!='prp'):
+        if i in sourceWordIndicesAlreadyAligned \
+                or (sourcePosTags[i-1][0].lower() != 'n' and sourcePosTags[i-1].lower() != 'prp'):
             continue
 
         numberOfNounsInSource += 1
 
         for j in targetWordIndices:
-            if j in targetWordIndicesAlreadyAligned or (targetPosTags[j-1][0].lower() != 'n' and targetPosTags[j-1].lower()!='prp'):
+            if j in targetWordIndicesAlreadyAligned \
+                    or (targetPosTags[j-1][0].lower() != 'n' and targetPosTags[j-1].lower() != 'prp'):
                 continue
 
-            if max(wordRelatedness(sourceWords[i-1], sourcePosTags[i-1], targetWords[j-1], targetPosTags[j-1]), wordRelatedness(sourceLemmas[i-1], sourcePosTags[i-1], targetLemmas[j-1], targetPosTags[j-1]))<ppdbSim:
+            if max(wordRelatedness(sourceWords[i-1], sourcePosTags[i-1], targetWords[j-1], targetPosTags[j-1]), wordRelatedness(sourceLemmas[i-1], sourcePosTags[i-1], targetLemmas[j-1], targetPosTags[j-1])) < ppdbSim:
                 continue
 
             wordSimilarities[(i, j)] = max(wordRelatedness(sourceWords[i-1], sourcePosTags[i-1], targetWords[j-1], targetPosTags[j-1]), wordRelatedness(sourceLemmas[i-1], sourcePosTags[i-1], targetLemmas[j-1], targetPosTags[j-1]))
@@ -71,7 +73,7 @@ def alignNouns(source, target, sourceParseResult, targetParseResult, existingAli
             for ktem in sourceWordParents:
                 for ltem in targetWordParents:
                     if ((ktem[0], ltem[0]) in existingAlignments+nounAlignments or max(wordRelatedness(ktem[1], sourcePosTags[ktem[0]-1], ltem[1], targetPosTags[ltem[0]-1]), wordRelatedness(sourceLemmas[ktem[0]-1], sourcePosTags[ktem[0]-1], targetLemmas[ltem[0]-1], targetPosTags[ltem[0]-1]))>=ppdbSim) and (
-                        (ktem[2]==ltem[2]) or
+                        (ktem[2] == ltem[2]) or
                             (ktem[2] in groupOfSimilarRelationsForNounParent and ltem[2] in groupOfSimilarRelationsForNounParent) or
                             (ktem[2] in group1OfSimilarRelationsForVerbParent and ltem[2] in group1OfSimilarRelationsForVerbParent) or
                             (ktem[2] in group2OfSimilarRelationsForVerbParent and ltem[2] in group2OfSimilarRelationsForVerbParent) or
